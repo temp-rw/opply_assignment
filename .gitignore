@@ -129,4 +129,7 @@ dmypy.json
 .pyre/
 
 # IDE specific files and directories
-.idea/*
+.idea
+
+# Dump files
+dump.json
