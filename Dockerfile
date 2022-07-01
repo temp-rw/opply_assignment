@@ -24,6 +24,11 @@ RUN mkdir ${APP_DIR} && chown ${APP_USER}:${APP_USER} ${APP_DIR}
 # Copy python requirements file
 COPY ./requirements.txt ${APP_DIR}
 
+
+# Upgrade pip
+RUN set -ex \
+    && pip install -U pip
+
 # Install python requirements
 RUN set -ex \
     && pip install --no-cache-dir -r ${APP_DIR}requirements.txt

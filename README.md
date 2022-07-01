@@ -6,6 +6,7 @@ To deploy this app on Heroku follow this simple steps:\
 3. Use `heroku create` to create Heroku app.
 4. Create runtime.txt and write appropriate version of python (`python-3.10.5`).
 5. Create Procfile and add `web: gunicorn opply.wsgi --log-file -` inside it.
+6. Then commit all the changes and push to `heroku main` like this: `git push heroku main` 
 
 
 ## Code formatting
