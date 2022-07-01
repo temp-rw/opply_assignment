@@ -1,13 +1,27 @@
+from django.core.validators import MinValueValidator
 from django.db import models
 
 from base.db.constants import PRODUCT_NAME_MAX_LENGTH
 from base.db.models import AbstractBaseModel
 from iam.models import User
+from orders.constants import OrderStatuses
 from products.models import Product
 
 
 class Order(AbstractBaseModel):
     customer = models.ForeignKey(to=User, on_delete=models.CASCADE)
+    status = models.CharField(choices=OrderStatuses.get_choices(), max_length=30)
+
+
+class Stock(AbstractBaseModel):
+    name = models.CharField(max_length=50)
+    address = models.CharField(max_length=250)
+
+
+class ProductStock(AbstractBaseModel):
+    product = models.ForeignKey(to=Product, on_delete=models.CASCADE)
+    stock = models.ForeignKey(to=Stock, on_delete=models.CASCADE)
+    amount_in_stock = models.IntegerField(validators=[MinValueValidator(0)])
 
 
 class OrderedProduct(AbstractBaseModel):

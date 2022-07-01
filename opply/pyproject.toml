@@ -2,5 +2,6 @@
 line-length = 120
 target-version = ['py39']
 include = '\.pyi?$'
+exclude = 'api/'
 skip-magic-trailing-comma = true
 safe = true

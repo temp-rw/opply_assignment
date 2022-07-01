@@ -7,3 +7,6 @@ from base.db.models import BaseEditableModel
 class Product(BaseEditableModel):
     name = models.CharField(max_length=PRODUCT_NAME_MAX_LENGTH)
     price = models.FloatField()
+
+    def __str__(self):
+        return f"{self.name}"

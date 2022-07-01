@@ -113,7 +113,8 @@ REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": ("rest_framework_simplejwt.authentication.JWTAuthentication",),
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
     "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"],
-    "PAGE_SIZE": 100
+    "PAGE_SIZE": 100,
+    "DEFAULT_PAGINATION_CLASS": None,  # noinspection rest_framework.W001
 }
 
 SPECTACULAR_SETTINGS = {
@@ -168,3 +169,5 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static")
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+SILENCED_SYSTEM_CHECKS = ("rest_framework.W001",)

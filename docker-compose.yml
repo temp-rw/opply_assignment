@@ -8,6 +8,8 @@ services:
       - '8907:5432'
     volumes:
       - ./opply/:${APP_DIR}/
+    environment:
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
 
   opply-api-service:
     container_name: opply-api-service

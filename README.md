@@ -10,7 +10,7 @@ To deploy this app on Heroku follow this simple steps:\
 
 
 ## Development
-## Docker container for development
+### Docker container for development
 Specify necessary data in through .env file. You could use example.env as a template. 
 While you specified all necessary parameters just run `docker-compose run --build -d` and enjoy!\
 ### Code formatting
