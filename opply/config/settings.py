@@ -48,6 +48,9 @@ INSTALLED_APPS = [
     # rest framework related apps
     'rest_framework',
     'django_filters',
+
+    # docs
+    'drf_spectacular',
 ]
 
 MIDDLEWARE = [
@@ -119,7 +122,7 @@ SPECTACULAR_SETTINGS = {
     'TITLE': 'Opply assignment backend service',
     'DESCRIPTION': 'API',
     'VERSION': '1',
-    'POSTPROCESSING_HOOKS': ['apps.base.swagger.postprocessing.update_example', ],
+    'POSTPROCESSING_HOOKS': ['base.swagger.postprocessing.update_example', ],
 }
 
 SIMPLE_JWT = {
