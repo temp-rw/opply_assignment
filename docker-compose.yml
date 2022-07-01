@@ -1,0 +1,30 @@
+version: '3'
+services:
+  opply-db-service:
+    container_name: opply-db-service
+    image: postgres:14.4-alpine3.16
+    env_file: .env
+    ports:
+      - '8907:5432'
+    volumes:
+      - ./opply/:${APP_DIR}/
+
+  opply-api-service:
+    container_name: opply-api-service
+    command: [
+        './wait-for.sh', '${POSTGRES_HOST}:${POSTGRES_PORT}',
+        '--',
+        "sh", "-c", "python manage.py migrate && python manage.py runserver 0.0.0.0:8800",
+    ]
+    ports:
+      - '8800:8800'
+    user: appuser
+    entrypoint: [ ]
+    env_file: .env
+    build:
+      context: .
+    volumes:
+      - ./opply/:${APP_DIR}/
+    depends_on:
+      - opply-db-service
+
