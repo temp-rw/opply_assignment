@@ -3,7 +3,6 @@ from rest_framework_simplejwt.serializers import TokenRefreshSerializer, TokenOb
 
 
 class OpplyTokenObtainPairSerializer(TokenObtainPairSerializer):
-
     @classmethod
     def get_token(cls, user):
         token_data = super().get_token(user)
