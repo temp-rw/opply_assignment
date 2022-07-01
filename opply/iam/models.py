@@ -8,12 +8,12 @@ from iam.managers import UserManager
 
 class User(AbstractUser, AbstractBaseModel):
     username = models.CharField(max_length=50, unique=True)
-    first_name = models.CharField('first name', max_length=50)
-    last_name = models.CharField('last name', max_length=50)
+    first_name = models.CharField("first name", max_length=50)
+    last_name = models.CharField("last name", max_length=50)
     email = CIEmailField(unique=True)
     role = models.ForeignKey(to="iam.Role", on_delete=models.SET_NULL, null=True)
 
-    REQUIRED_FIELDS = ('email',)
+    REQUIRED_FIELDS = ("email",)
 
     objects = UserManager()
 
