@@ -116,7 +116,7 @@ REST_FRAMEWORK = {
 }
 
 SPECTACULAR_SETTINGS = {
-    'TITLE': 'opply assignment backend service',
+    'TITLE': 'Opply assignment backend service',
     'DESCRIPTION': 'API',
     'VERSION': '1',
     'POSTPROCESSING_HOOKS': ['apps.base.swagger.postprocessing.update_example', ],
