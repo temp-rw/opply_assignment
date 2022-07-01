@@ -1,4 +1,4 @@
-# opply_assignment
+# Opply assignment task
 ## Deployment info
 To deploy this app on Heroku follow this simple steps:\
 1. Create a Heroku account if you haven't got it yet.
@@ -9,7 +9,11 @@ To deploy this app on Heroku follow this simple steps:\
 6. Then commit all the changes and push to `heroku main` like this: `git push heroku main` 
 
 
-## Code formatting
-For the purpose of code formatting you can use black formatter which is already configured inside this project.
-To use black just enter this command inside root directory into your prompt (previously activate your environment):
-`black opply`
+## Development
+## Docker container for development
+Specify necessary data in through .env file. You could use example.env as a template. 
+While you specified all necessary parameters just run `docker-compose run --build -d` and enjoy!\
+### Code formatting
+For the purpose of code formatting you can use black formatter which is already configured 
+inside this project. To use black just enter this command inside root directory into your 
+prompt (don't forget to activate your environment previously): `black opply`
