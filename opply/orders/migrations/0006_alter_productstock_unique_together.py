@@ -5,14 +5,6 @@ from django.db import migrations
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('products', '0002_alter_product_price'),
-        ('orders', '0005_stock_stock_products'),
-    ]
+    dependencies = [("products", "0002_alter_product_price"), ("orders", "0005_stock_stock_products")]
 
-    operations = [
-        migrations.AlterUniqueTogether(
-            name='productstock',
-            unique_together={('product', 'stock')},
-        ),
-    ]
+    operations = [migrations.AlterUniqueTogether(name="productstock", unique_together={("product", "stock")})]

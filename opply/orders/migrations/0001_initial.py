@@ -10,36 +10,61 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('products', '0001_initial'),
-    ]
+    dependencies = [migrations.swappable_dependency(settings.AUTH_USER_MODEL), ("products", "0001_initial")]
 
     operations = [
         migrations.CreateModel(
-            name='Order',
+            name="Order",
             fields=[
-                ('uuid', models.CharField(default=base.db.utils.generate_uuid, editable=False, max_length=64, primary_key=True, serialize=False, verbose_name='uuid')),
-                ('created_at', models.DateTimeField(auto_now_add=True, verbose_name='Created at')),
-                ('status', models.CharField(choices=[('reserved', 'RESERVED'), ('in_delivery', 'IN_DELIVERY'), ('delivered', 'DELIVERED')], max_length=30)),
-                ('customer', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "uuid",
+                    models.CharField(
+                        default=base.db.utils.generate_uuid,
+                        editable=False,
+                        max_length=64,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="uuid",
+                    ),
+                ),
+                ("created_at", models.DateTimeField(auto_now_add=True, verbose_name="Created at")),
+                (
+                    "status",
+                    models.CharField(
+                        choices=[("reserved", "RESERVED"), ("in_delivery", "IN_DELIVERY"), ("delivered", "DELIVERED")],
+                        max_length=30,
+                    ),
+                ),
+                (
+                    "customer",
+                    models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL),
+                ),
             ],
-            options={
-                'abstract': False,
-            },
+            options={"abstract": False},
         ),
         migrations.CreateModel(
-            name='OrderedProduct',
+            name="OrderedProduct",
             fields=[
-                ('uuid', models.CharField(default=base.db.utils.generate_uuid, editable=False, max_length=64, primary_key=True, serialize=False, verbose_name='uuid')),
-                ('created_at', models.DateTimeField(auto_now_add=True, verbose_name='Created at')),
-                ('name', models.CharField(max_length=50)),
-                ('price', models.FloatField()),
-                ('order', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='orders.order')),
-                ('original_product', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='products.product')),
+                (
+                    "uuid",
+                    models.CharField(
+                        default=base.db.utils.generate_uuid,
+                        editable=False,
+                        max_length=64,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="uuid",
+                    ),
+                ),
+                ("created_at", models.DateTimeField(auto_now_add=True, verbose_name="Created at")),
+                ("name", models.CharField(max_length=50)),
+                ("price", models.FloatField()),
+                ("order", models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to="orders.order")),
+                (
+                    "original_product",
+                    models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to="products.product"),
+                ),
             ],
-            options={
-                'abstract': False,
-            },
+            options={"abstract": False},
         ),
     ]

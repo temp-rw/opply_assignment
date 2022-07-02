@@ -42,16 +42,13 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-
     # project apps
     "iam",
     "products",
     "orders",
-
     # rest framework related apps
     "rest_framework",
     "django_filters",
-
     # docs
     "drf_spectacular",
 ]

@@ -11,12 +11,12 @@ class CustomerSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         exclude = (
-            'role',
-            'created_at',
-            'password',
-            'last_login',
-            'is_staff',
-            'date_joined',
+            "role",
+            "created_at",
+            "password",
+            "last_login",
+            "is_staff",
+            "date_joined",
             "groups",
             "user_permissions",
             "is_superuser",
@@ -28,11 +28,11 @@ class ProductStockSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ProductStock
-        exclude = ('stock',)
+        exclude = ("stock",)
 
 
 class StockSerializer(serializers.ModelSerializer):
-    product_stock = ProductStockSerializer(source='productstock_set', many=True)
+    product_stock = ProductStockSerializer(source="productstock_set", many=True)
 
     class Meta:
         model = Stock
@@ -46,9 +46,7 @@ class ListOrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Order
         fields = "__all__"
-        extra_kwargs = {
-            "status": {"read_only": True}
-        }
+        extra_kwargs = {"status": {"read_only": True}}
 
 
 class CreateOrderSerializer(serializers.Serializer):
@@ -66,27 +64,23 @@ class CreateOrderSerializer(serializers.Serializer):
         stock_product = ProductStock.objects.filter(stock_id=attrs["stock_id"], product_id=attrs["product_id"]).first()
         if stock_product.amount_in_stock < attrs["amount"]:
             raise ValidationError(
-                {"amount": "You can't buy more products then exists in store"},
-                code=status.HTTP_400_BAD_REQUEST
+                {"amount": "You can't buy more products then exists in store"}, code=status.HTTP_400_BAD_REQUEST
             )
         return attrs
 
     def create(self, validated_data):
         customer_id = self.context["request"].user.uuid
         stock_product = ProductStock.objects.filter(
-            stock_id=validated_data["stock_id"],
-            product_id=validated_data["product_id"]
+            stock_id=validated_data["stock_id"], product_id=validated_data["product_id"]
         ).first()
         order = Order.objects.create(
-            stock_id=validated_data["stock_id"],
-            customer_id=customer_id,
-            status=OrderStatuses.RESERVED
+            stock_id=validated_data["stock_id"], customer_id=customer_id, status=OrderStatuses.RESERVED
         )
         new_product_amount = stock_product.amount_in_stock - validated_data["amount"]
         ProductStock.objects.update(
             stock_id=validated_data["stock_id"],
             product_id=validated_data["product_id"],
-            amount_in_stock=new_product_amount
+            amount_in_stock=new_product_amount,
         )
         validated_data["amount_left_in_stock"] = new_product_amount
         return validated_data

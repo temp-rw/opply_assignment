@@ -9,9 +9,7 @@ class Product(BaseEditableModel):
     name = models.CharField(max_length=PRODUCT_NAME_MAX_LENGTH)
     price = models.FloatField(validators=[MinValueValidator(0.0001)])
     product_stocks = models.ManyToManyField(
-        to='orders.Stock',
-        through='orders.ProductStock',
-        through_fields=['product', 'stock']
+        to="orders.Stock", through="orders.ProductStock", through_fields=["product", "stock"]
     )
 
     def __str__(self):

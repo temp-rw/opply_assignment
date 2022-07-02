@@ -6,14 +6,12 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('products', '0001_initial'),
-    ]
+    dependencies = [("products", "0001_initial")]
 
     operations = [
         migrations.AlterField(
-            model_name='product',
-            name='price',
+            model_name="product",
+            name="price",
             field=models.FloatField(validators=[django.core.validators.MinValueValidator(0.0001)]),
-        ),
+        )
     ]

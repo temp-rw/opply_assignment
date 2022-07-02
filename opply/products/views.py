@@ -11,11 +11,11 @@ class ProductListView(ListAPIView):
     serializer_class = ProductSerializer
     permission_classes = [AllowAny]
     pagination_class = LimitOffsetPagination
-    http_method_names = ('get',)
+    http_method_names = ("get",)
 
     def get_queryset(self):
-        return Product.objects.alias(
-            products_in_stock=F('product_stocks__productstock__amount_in_stock')
-        ).filter(
-            products_in_stock__gt=0
-        ).all()
+        return (
+            Product.objects.alias(products_in_stock=F("product_stocks__productstock__amount_in_stock"))
+            .filter(products_in_stock__gt=0)
+            .all()
+        )

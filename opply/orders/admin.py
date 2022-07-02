@@ -5,7 +5,7 @@ from orders.models import Order, Stock, ProductStock
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ('uuid', 'created_at',)
+    list_display = ("uuid", "created_at")
 
 
 class StockProductInline(admin.TabularInline):
@@ -14,5 +14,5 @@ class StockProductInline(admin.TabularInline):
 
 @admin.register(Stock)
 class StockAdmin(admin.ModelAdmin):
-    list_display = ('uuid', 'created_at',)
+    list_display = ("uuid", "created_at")
     inlines = [StockProductInline]

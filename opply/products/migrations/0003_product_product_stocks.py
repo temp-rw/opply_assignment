@@ -5,15 +5,12 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('orders', '0006_alter_productstock_unique_together'),
-        ('products', '0002_alter_product_price'),
-    ]
+    dependencies = [("orders", "0006_alter_productstock_unique_together"), ("products", "0002_alter_product_price")]
 
     operations = [
         migrations.AddField(
-            model_name='product',
-            name='product_stocks',
-            field=models.ManyToManyField(through='orders.ProductStock', to='orders.stock'),
-        ),
+            model_name="product",
+            name="product_stocks",
+            field=models.ManyToManyField(through="orders.ProductStock", to="orders.stock"),
+        )
     ]

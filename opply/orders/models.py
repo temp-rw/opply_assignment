@@ -11,16 +11,14 @@ from products.models import Product
 class Order(AbstractBaseModel):
     customer = models.ForeignKey(to=User, on_delete=models.CASCADE)
     status = models.CharField(choices=OrderStatuses.get_choices(), max_length=30)
-    stock = models.ForeignKey(to='orders.Stock', on_delete=models.SET_NULL, null=True)
+    stock = models.ForeignKey(to="orders.Stock", on_delete=models.SET_NULL, null=True)
 
 
 class Stock(AbstractBaseModel):
     name = models.CharField(max_length=50)
     address = models.CharField(max_length=250)
     stock_products = models.ManyToManyField(
-        to=Product,
-        through='orders.ProductStock',
-        through_fields=['stock', 'product']
+        to=Product, through="orders.ProductStock", through_fields=["stock", "product"]
     )
 
 
@@ -30,7 +28,7 @@ class ProductStock(AbstractBaseModel):
     amount_in_stock = models.IntegerField(validators=[MinValueValidator(0)], default=0)
 
     class Meta:
-        unique_together = ['product', 'stock']
+        unique_together = ["product", "stock"]
 
 
 class OrderedProduct(AbstractBaseModel):

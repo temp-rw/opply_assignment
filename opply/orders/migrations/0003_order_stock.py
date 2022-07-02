@@ -6,14 +6,12 @@ import django.db.models.deletion
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('orders', '0002_stock_productstock'),
-    ]
+    dependencies = [("orders", "0002_stock_productstock")]
 
     operations = [
         migrations.AddField(
-            model_name='order',
-            name='stock',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='orders.stock'),
-        ),
+            model_name="order",
+            name="stock",
+            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to="orders.stock"),
+        )
     ]
