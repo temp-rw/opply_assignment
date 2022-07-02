@@ -1,5 +1,6 @@
 from django.db.models import F
 from rest_framework.generics import ListAPIView
+from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.permissions import AllowAny
 
 from products.models import Product
@@ -9,6 +10,7 @@ from products.serializers import ProductSerializer
 class ProductListView(ListAPIView):
     serializer_class = ProductSerializer
     permission_classes = [AllowAny]
+    pagination_class = LimitOffsetPagination
     http_method_names = ('get',)
 
     def get_queryset(self):
