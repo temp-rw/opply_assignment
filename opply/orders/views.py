@@ -1,15 +1,14 @@
 from rest_framework.generics import ListCreateAPIView, CreateAPIView
 from rest_framework.permissions import IsAuthenticated
 
-from orders.constants import OrderStatuses
 from orders.models import Order
-from orders.serializers import OrderSerializer, DeclineOrderSerializer
+from orders.serializers import ListOrderSerializer, CreateOrderSerializer
 
 
 class ListOrderView(ListCreateAPIView):
-    serializer_class = OrderSerializer
+    serializer_class = ListOrderSerializer
     permission_classes = [IsAuthenticated]
-    http_method_names = ('get', 'post')
+    http_method_names = ('get',)
 
     def get_queryset(self):
         return Order.objects.filter(
@@ -23,18 +22,7 @@ class ListOrderView(ListCreateAPIView):
         )
 
 
-class DeclineOrder(CreateAPIView):
-    serializer_class = DeclineOrderSerializer
+class CreateOrderView(CreateAPIView):
+    serializer_class = CreateOrderSerializer
     permission_classes = [IsAuthenticated]
     http_method_names = ('post',)
-
-    def get_queryset(self):
-        return Order.objects.filter(
-            customer=self.request.user,
-            status=OrderStatuses.RESERVED.value
-        ).select_related(
-            'customer',
-            'stock'
-        ).prefetch_related(
-            'stock__productstock_set'
-        )

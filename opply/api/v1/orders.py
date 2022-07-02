@@ -1,8 +1,8 @@
 from django.urls import path
 
-from orders.views import ListOrderView, DeclineOrder
+from orders.views import ListOrderView, CreateOrderView
 
 urlpatterns = [
-    path('', ListOrderView.as_view(), name="list_create_orders"),
-    path('{uuid}/decline', DeclineOrder.as_view(), name="decline_order"),
+    path('', ListOrderView.as_view(), name="list_orders"),
+    path('create/', CreateOrderView.as_view(), name="create_orders"),
 ]
